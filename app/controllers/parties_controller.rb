@@ -2,6 +2,9 @@ class PartiesController < ApplicationController
   before_action :authenticate
 
   def create
+    party_name = params[:name].presence || "#{current_user.name}'s Party"
+    current_user.create_party(party_name)
+    redirect_to root_path
   end
 
   def update

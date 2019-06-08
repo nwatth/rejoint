@@ -12,7 +12,7 @@ class User < ApplicationRecord
     members.present?
   end
 
-  def create_party(party_name = "#{name}'s Party")
+  def create_party(party_name)
     party = Party.new(name: party_name)
     enter_party(party)
   end

@@ -24,9 +24,10 @@
         </li>
       </ul>
     </div>
+
     <div class="card-body">
       <% if @user.has_party? %>
-        <div class="jumbotron">
+        <div class="jumbotron m-0">
           <div class="d-flex justify-content-between">
             <%= @user.members.first.party.name %>
             <%= link_to 'ออก', @user.members.first.party, method: :delete, class: 'btn btn-outline-danger btn-sm float-right' %>
@@ -38,7 +39,19 @@
           </ul>
         </div>
       <% else %>
+        <%= form_with url: parties_path, local: true, class: 'form' do |f| %>
+          <div class="input-group">
+            <%= f.text_field :name, class: "form-control", placeholder: "#{@user.name}'s Party" %>
+            <div class="input-group-append">
+              <%= f.submit 'สร้างปาร์ตี้', class: 'btn btn-primary mb-2' %>
+            </div>
+          </div>
+        <% end %>
       <% end %>
+
+      <div class="text-center text-muted m-1">
+        . . .
+      </div>
 
       <div>
         <ul class="list-group list-group-flush">
@@ -49,7 +62,7 @@
                 <%= party.members.size %>/5
               </span>
               <% unless @user.has_party? %>
-                <%= link_to 'เข้าร่วม', party, method: :put, class: 'btn btn-outline-primary btn-sm float-right' %>
+                <%= link_to 'เข้าร่วม', party, method: :put, class: 'btn btn-outline-info btn-sm float-right' %>
               <% end %>
             </li>
           <% end %>
