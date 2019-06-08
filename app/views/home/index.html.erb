@@ -1,2 +1,45 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="container">
+  <nav>
+    <ul class="nav float-right">
+      <li class="nav-item">
+        <button class="btn btn-link nav-link disabled">
+          <%= @user.name %>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <h3 class="text-muted"> สงคราม<span class="d-none d-sm-inline">เริ่มแล้ว</span>! </h3>
+
+  <hr/>
+
+  <div class="card">
+    <div class="card-header border-bottom-0 pb-0">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">ปาร์ตี้</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">ตัวละคร</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <% @parties.each do |party| %>
+          <li class="list-group-item px-0">
+            <%= party.name %>
+            <span class="badge badge-secondary badge-pill">
+              <%= party.members.size %>/5
+            </span>
+            <% unless @user.has_party? %>
+              <a href="#" class="btn btn-outline-primary btn-sm float-right">
+                เข้าร่วม
+              </a>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
