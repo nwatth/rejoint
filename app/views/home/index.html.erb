@@ -33,9 +33,7 @@
               <%= party.members.size %>/5
             </span>
             <% unless @user.has_party? %>
-              <a href="#" class="btn btn-outline-primary btn-sm float-right">
-                เข้าร่วม
-              </a>
+              <%= link_to 'เข้าร่วม', party, method: :put, class: 'btn btn-outline-primary btn-sm float-right' %>
             <% end %>
           </li>
         <% end %>

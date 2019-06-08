@@ -15,7 +15,9 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-import '../stylesheets/application.scss';
+import '../stylesheets/application.scss'
 import './bootstrap_custom.js'
 
-require.context('../images', true);
+import {} from 'jquery-ujs'
+
+require.context('../images', true)
