@@ -2,9 +2,7 @@
   <nav>
     <ul class="nav float-right">
       <li class="nav-item">
-        <button class="btn btn-link nav-link disabled">
-          <%= @user.name %>
-        </button>
+        <%= link_to 'ออกจากระบบ', logout_path, class: 'nav-link text-muted' %>
       </li>
     </ul>
   </nav>
@@ -61,9 +59,9 @@
                 <li class="list-group-item px-0">
                   <%= party.name %>
                   <span class="badge badge-secondary badge-pill">
-                    <%= party.members.size %>/5
+                    <%= party.members.size %>/<%= Party::LIMITED %>
                   </span>
-                  <% unless @user.has_party? %>
+                  <% unless @user.has_party? || party.members.size >= Party::LIMITED %>
                     <%= link_to 'เข้าร่วม', party, method: :put, class: 'btn btn-outline-info btn-sm float-right' %>
                   <% end %>
                 </li>
