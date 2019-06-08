@@ -25,19 +25,36 @@
       </ul>
     </div>
     <div class="card-body">
-      <ul class="list-group list-group-flush">
-        <% @parties.each do |party| %>
-          <li class="list-group-item px-0">
-            <%= party.name %>
-            <span class="badge badge-secondary badge-pill">
-              <%= party.members.size %>/5
-            </span>
-            <% unless @user.has_party? %>
-              <%= link_to 'เข้าร่วม', party, method: :put, class: 'btn btn-outline-primary btn-sm float-right' %>
+      <% if @user.has_party? %>
+        <div class="jumbotron">
+          <div class="d-flex justify-content-between">
+            <%= @user.members.first.party.name %>
+            <%= link_to 'ออก', @user.members.first.party, method: :delete, class: 'btn btn-outline-danger btn-sm float-right' %>
+          </div>
+          <ul>
+            <% @user.members.first.party.members.each do |member| %>
+              <li> <%= member.user.name %> </li>
             <% end %>
-          </li>
-        <% end %>
-      </ul>
+          </ul>
+        </div>
+      <% else %>
+      <% end %>
+
+      <div>
+        <ul class="list-group list-group-flush">
+          <% @parties.each do |party| %>
+            <li class="list-group-item px-0">
+              <%= party.name %>
+              <span class="badge badge-secondary badge-pill">
+                <%= party.members.size %>/5
+              </span>
+              <% unless @user.has_party? %>
+                <%= link_to 'เข้าร่วม', party, method: :put, class: 'btn btn-outline-primary btn-sm float-right' %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

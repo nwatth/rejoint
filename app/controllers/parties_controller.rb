@@ -11,5 +11,8 @@ class PartiesController < ApplicationController
   end
 
   def destroy
+    party = Party.find(params[:id])
+    current_user.leave_party(party)
+    redirect_to root_path
   end
 end
