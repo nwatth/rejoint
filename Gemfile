@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'webpacker', '~> 4.0'
 
+gem 'omniauth-line'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
